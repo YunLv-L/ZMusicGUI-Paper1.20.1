@@ -1,0 +1,38 @@
+name: Build ZMusicGUI 1.20.1
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up JDK 21
+      uses: actions/setup-java@v4
+      with:
+        java-version: '21'
+        distribution: 'temurin'
+
+    # --- 动态修改 plugin.yml 中的作者和链接 ---
+    - name: Modify plugin.yml
+      run: |
+        sed -i 's/authors: \[Yuncan\]/authors: [YunLv_L]/' src/main/resources/plugin.yml
+        sed -i 's|website: https://github.com/Yuncan050115|website: https://github.com/YunLv-L/ZMusicGUI-Paper1.20.1|' src/main/resources/plugin.yml
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew shadowJar
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ZMusicGUI-1.20.1
+        path: build/libs/*.jar
