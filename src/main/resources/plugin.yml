@@ -2,8 +2,8 @@ name: ZMusicGUI
 version: "${version}"
 main: com.ourcraft.zmusicgui.ZMusicGUI
 api-version: '1.13'
-authors: [Yuncan]
-website: https://github.com/Yuncan050115
+authors: [YunLv-L]
+website: https://github.com/YunLv-L
 description: ZMusicGUI - 多平台音乐 GUI 插件 (网易云/酷狗/酷我), 内置 Mod 通信
 folia-supported: true
 softdepend:

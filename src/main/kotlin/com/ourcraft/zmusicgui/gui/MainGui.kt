@@ -61,8 +61,8 @@ object MainGui : ZGui {
     fun openWebsite(player: Player) {
         player.sendMessage(Items.color(Messages.player("website")))
         try {
-            val comp = net.kyori.adventure.text.Component.text("§a§nhttps://github.com/Yuncan050115")
-                .clickEvent(net.kyori.adventure.text.event.ClickEvent.openUrl("https://github.com/Yuncan050115"))
+            val comp = net.kyori.adventure.text.Component.text("§a§nhttps://github.com/YunLv-L")
+                .clickEvent(net.kyori.adventure.text.event.ClickEvent.openUrl("https://github.com/YunLv-L"))
             player.sendMessage(comp)
         } catch (_: Throwable) {
             // 非 Paper 环境, 仅输出文本

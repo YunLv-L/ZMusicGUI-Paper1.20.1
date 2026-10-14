@@ -71,7 +71,7 @@ player:
   public-toggled-on: "&a歌单已公开"
   public-toggled-off: "&7歌单已设为私密"
   cant-favorite-own: "&c不能收藏自己的歌单"
-  website: "&a作者主页: &fhttps://github.com/Yuncan050115"
+  website: "&a作者主页: &fhttps://github.com/YunLv-L"
 
 # ==================== 命令 ====================
 command:

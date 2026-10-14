@@ -38,7 +38,7 @@ class ZMusicGUI : JavaPlugin() {
             private set
         // 动态读取 plugin.yml 版本号, 与 build.gradle.kts 的 project.version 保持同步, 避免硬编码漂移
         private val CURRENT_VERSION get() = plugin.description.version
-        private const val GITHUB_API = "https://api.github.com/repos/Yuncan050115/ZMusicGUI/releases/latest"
+        private const val GITHUB_API = "https://api.github.com/repos/YunLv-L/ZMusicGUI-Paper1.20.1/releases/latest"
     }
 
     override fun onEnable() {
