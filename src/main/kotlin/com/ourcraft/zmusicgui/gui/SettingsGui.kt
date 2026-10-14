@@ -60,9 +60,8 @@ object SettingsGui : ZGui {
                 val current = PlayerSettings.getCurrentSource(player)
                 val next = nextSource(current)
                 PlayerSettings.setCurrentSource(player, next)
-                // 同时把新源加入预设列表，防止被重置
                 PlayerSettings.addPreferredSource(player, next)
-                player.sendMessage(...)
+                player.sendMessage(Items.color("${Messages.prefix()} &a音乐源已切换为: ${SearchService.sourceName(next)}"))
                 open(player)
             }
             "lyric" -> {
