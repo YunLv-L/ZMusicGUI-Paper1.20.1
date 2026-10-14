@@ -122,14 +122,15 @@ object PlayerSettings {
         return s.preferredSources.firstOrNull() ?: "netease"
     }
 
-    /** 返回当前选中源 (解决多源按默认搜索问题) */
+    /**
+     * 返回当前选中源 (解决多源按默认搜索问题)
+     *
+     * ★ 修改: 移除强制重置逻辑, 只要 currentSource 非空就直接返回。
+     *         原逻辑会在切换源后, 因 preferredSources 未同步而把玩家打回默认源。
+     */
     fun getCurrentSource(player: Player): String {
         val s = getSettings(player)
-        // 如果当前源不在预设源列表中, 重置
-        if (s.currentSource !in s.preferredSources) {
-            s.currentSource = s.preferredSources.firstOrNull() ?: "netease"
-        }
-        return s.currentSource
+        return s.currentSource.ifEmpty { s.preferredSources.firstOrNull() ?: "netease" }
     }
 
     /** 设置当前选中源 */
@@ -138,6 +139,20 @@ object PlayerSettings {
         s.currentSource = source
         yaml.set("players.${player.uniqueId}.current-source", source)
         save()
+    }
+
+    /**
+     * ★ 新增: 把指定源加入 preferredSources 列表 (若已存在则不重复添加)
+     *
+     * 供 SettingsGui 在切换源时调用, 避免 getCurrentSource 把玩家打回默认源。
+     */
+    fun addPreferredSource(player: Player, source: String) {
+        val s = getSettings(player)
+        if (source !in s.preferredSources) {
+            s.preferredSources.add(source)
+            yaml.set("players.${player.uniqueId}.preferred-sources", s.preferredSources)
+            save()
+        }
     }
 
     fun setDefaultScope(player: Player, scope: String) {
